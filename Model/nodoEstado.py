@@ -4,6 +4,8 @@ class nodoEstado:
         self.listaTransicion = []
         self.estadoAceptacion = bool
 
+    # get & set
+
     def getEstado(self):
         return self.estado
 
