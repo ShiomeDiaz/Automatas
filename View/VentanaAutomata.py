@@ -2,7 +2,7 @@
 
 import graphviz as gv
 from graphviz import Digraph
-import os,sys
+import sys
 import pygame
 from pygame.locals import *
 from PyQt5.QtWidgets import QApplication,QMainWindow,QWidget, QPushButton, QMessageBox
