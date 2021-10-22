@@ -4,6 +4,7 @@ class Transicion:
         self.destino = destino
         self.operacion = operacion
 
+    # get & set
     def getOrigen(self):
         return self.origen
 
