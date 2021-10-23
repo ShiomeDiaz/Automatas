@@ -431,6 +431,7 @@ class Grafo:
                 gradoNodo = len(nodoEstado.getListaTransicion())
         self.listaAristas = copiaTransicion
         return gradoNodo
+
 """
     def caminoMasCorto(self, origen, destino):
         VerticesAux = []
