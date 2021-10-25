@@ -115,3 +115,18 @@ class Automata:
             #self.ingresarNodoEstado(nodosdos)
         #for transdos in redAcme["dos"]["Trans"]:
             #self.ingresarTransicion(transdos[0], transdos[1], transdos[2])
+
+    # Metodo que devuelve el complemento de un automata
+    def complemento(self):
+        listaComplemento=[]
+        for i in range(len(self.listaNodoEstado)):
+            listaComplemento.insert(i,self.listaNodoEstado)
+
+        for estado in self.listaComplemento:
+
+            if estado.estadoAceptacion==False:
+                estado.estadoAceptacion=True
+            elif estado.estadoAceptacion==True
+                estado.estadoAceptacion = False
+        return listaComplemento
+
