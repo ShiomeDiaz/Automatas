@@ -12,6 +12,8 @@ class Automata:
         self.listaTran= []
         self.listaVisitados = []  # necesario?
         self.listaBloqueadas = [] # necesario?
+        self.estadoInicial=[]
+        self.estadosAceptacion=[]
 
     def getListaNodoEstado(self):
         return self.listaNodoEstado
@@ -126,7 +128,7 @@ class Automata:
 
             if estado.estadoAceptacion==False:
                 estado.estadoAceptacion=True
-            elif estado.estadoAceptacion==True
+            elif estado.estadoAceptacion==True:
                 estado.estadoAceptacion = False
         return listaComplemento
 
