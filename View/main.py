@@ -10,12 +10,12 @@ if __name__ == "__main__":
     A = Automata()
     A.cargarRedInicial("../Data/datos.json")
     #---
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow, A)
-    MainWindow.show()
-    sys.exit(app.exec_())
+    # app = QtWidgets.QApplication(sys.argv)
+    # MainWindow = QtWidgets.QMainWindow()
+    # ui = Ui_MainWindow()
+    # ui.setupUi(MainWindow, A)
+    # MainWindow.show()
+    # sys.exit(app.exec_())
     #---
     #A.imprimirNodoEstado()
     #A.separador()
@@ -35,19 +35,6 @@ if __name__ == "__main__":
     #A.prim()
 
 
-    # trans2 = [["A", "B", 1], ["A", "A", 0], ["A", "E", 0], ["E", "D", 1], ["F", "F", 1], ["D", "C", 1], ["B", "A", 0],
-    #          ["E", "C", 0], ["F", "D", 0], ["B", "B", 1]]
-    #
-    # trans=[]
-    # # estados.insert(nodo, A.listaNodoEstado[nodo].estado)
-    # for tran in range(len(A.listaTran)):
-    #     A=A.listaTran[tran].origen
-    #     trans.insert(tran,A.listaTran)
-    #
-    #
-    # inicial = ["A"]
-    # alf = [0, 1]
-    # aceptacion = ["C"]
 
 
     #A.caminoMasCorto("Silvestre", "Correcaminos")

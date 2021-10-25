@@ -279,6 +279,17 @@ if __name__ == '__main__':
     # trans= []
     # for tran in range(len(A.))
 
+    # trans = []
+    # for tran in range(len(A.listaTran)):
+    #     o = A.listaTran[tran].origen
+    #     d = A.listaTran[tran].destino
+    #     op = A.listaTran[tran].operacion
+    #     trans.insert(tran, [o, d, op])
+
+    # aceptacion = A.estadoInicial
+
+    # aceptacion = A.estadosAceptacion
+
     x = dibujarAutomata(alf, estados, inicial, trans, aceptacion, palabra)
     v = VentanaGrafico(alf, inicial, aceptacion, estados, trans, palabra)
     if x == 2:
