@@ -5,7 +5,7 @@ from collections import deque
 from copy import copy
 import json
 
-
+'''
 class Grafo:
     def __init__(self):
         self.listaNodoEstado = []
@@ -246,6 +246,7 @@ class Grafo:
                     dirigido = True
             if dirigido == False:
                 copiaAristas.append(Arista(elemento.getDestino(), elemento.getOrigen(), elemento.getPeso()))
+"""
 """
     def Kruskal(self):
         copiaAristas = copy(self.getListaAristas())  # copia de las aristas
@@ -605,3 +606,5 @@ class Grafo:
         for i in range(len(self.listaAristas)):
             print(self.listaAristas[i].getOrigen(), self.listaAristas[i].getDestino(),
                   self.listaAristas[i].getOperacion())
+"""
+'''

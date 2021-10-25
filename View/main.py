@@ -1,24 +1,24 @@
-from Controller.Automata import Automata
-from Controller.Animacion import animacion
-#from Controller.Animation import animacion
+from Controller.AutoDos import Automata
+
 
 
 
 if __name__ == "__main__":
     A = Automata()
-    A.cargarRedInicial("../Data/redInicial.json")
-    A.imprimirNodoEstado()
-    A.separador()
-    A.imprimirTransicion()
-    A.separador()
-    A.imprimirListaTransicion()
-    A.separador()
-    A.getPozos()
-    A.separador()
-    A.getFuentes()
-    A.separador()
-    A.fuerteConexo()
-    A.separador()
+    A.cargarRedInicial("../Data/datos.json")
+    print(A.amplitud('A'))
+    #A.imprimirNodoEstado()
+    #A.separador()
+    #A.imprimirTransicion()
+    #A.separador()
+    #A.imprimirListaTransicion()
+    #A.separador()
+    #A.getPozos()
+    #A.separador()
+    #A.getFuentes()
+    #A.separador()
+    #A.fuerteConexo()
+    #A.separador()
     #A.separador()
     #A.Boruvka()
     #A.Kruskal()
