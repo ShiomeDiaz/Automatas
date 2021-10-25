@@ -9,7 +9,7 @@ import json
 class Automata:
     def __init__(self):
         self.listaNodoEstado = []
-        self.listaTran= []
+        self.listaTran = []
         self.listaVisitados = []  # necesario?
         self.listaBloqueadas = [] # necesario?
         self.estadoInicial=[]
@@ -20,6 +20,12 @@ class Automata:
 
     def getListaTran(self):
         return self.listaTran
+
+    def getEstadoInicial(self):
+        return self.estadoInicial
+
+    def getEstadosAceptacion(self):
+        return self.estadosAceptacion
 
     def getListaVisitados(self): # necesario?
         return self.listaVisitados
@@ -46,7 +52,7 @@ class Automata:
                 return self.listaNodoEstado[i]
 
     def ingresarTransicion(self, origen, destino, operacion):
-        print(origen, destino, operacion, '--> IngresarTrans')
+        #print(origen, destino, operacion, '--> IngresarTrans')
         if self.verificarTransicion(origen, destino, operacion) == None:
 
             if self.verificarNodoEstado(origen) != None and self.verificarNodoEstado(destino) != None: #--> problema
