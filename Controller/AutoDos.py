@@ -101,8 +101,15 @@ class Automata:
                     visitadosA.append(Transicion)
         return visitadosA
     def recorrido(self, lista): # ---> metodo de recorrido mediante la quintupla
-        lista
-    def cargarRedInicial(self, ruta):
+        pass
+
+    '''Creacion de metodos para operaciones,
+    Para un solo grafo ---> Complemento, reverso y completar automata en caso de que este incompleto
+    Para la pareja de grafos -->
+    [A, B]U[C, D] ==> [AC, AD, BC, BD]
+    '''
+
+    def cargarRedInicial(self, ruta): # --> Metodo que se alimenta del json
         with open(ruta) as contenido:
             redAcme = json.load(contenido)
         for nodosuno in redAcme["uno"]["Nodos"]:

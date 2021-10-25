@@ -1,4 +1,7 @@
 from Controller.AutoDos import Automata
+import sys
+from PyQt5 import QtCore, QtGui, QtWidgets
+from NuevaGrafica.pyui import Ui_MainWindow
 
 
 
@@ -6,7 +9,14 @@ from Controller.AutoDos import Automata
 if __name__ == "__main__":
     A = Automata()
     A.cargarRedInicial("../Data/datos.json")
-    print(A.amplitud('A'), 'Amplitud')
+    #---
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow, A)
+    MainWindow.show()
+    sys.exit(app.exec_())
+    #---
     #A.imprimirNodoEstado()
     #A.separador()
     #A.imprimirTransicion()
