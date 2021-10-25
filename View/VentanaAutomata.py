@@ -24,7 +24,7 @@ from Controller.AutoDos import Automata
 #               mientras que c es la letra que acepta.
 #  * final      Son los estados finales del autómata.
 
-def dibujarAutomata(alfabeto, estados, inicio, trans, final, palabra):
+def dibujarAutomata(alfabeto, estados, inicio, trans, final):
     g = gv.Digraph(format='png')
     g.graph_attr['rankdir'] = 'LR'
     g.node('ini', shape="point")
@@ -42,21 +42,16 @@ def dibujarAutomata(alfabeto, estados, inicio, trans, final, palabra):
             return 0
         g.edge(t[0], t[1], label=str(t[2]))
 
-    for p in palabra:
-        if p not in alfabeto:
-            return 1
-
     g.render(view=False)
     return 2
 
 
 class VentanaGrafico:
-    def __init__(self, alf, inicial, aceptacion, estados, trans, palabra):
+    def __init__(self, alf, inicial, aceptacion, estados, trans):
         self.cursor = Cursor()
         self.G = nx.Graph()
         self.inicial = inicial
         self.aceptacion = aceptacion
-        self.palabra = palabra
         self.imagen1 = pygame.image.load("boton1.png")
         self.alf = alf
         self.estados = estados
@@ -124,63 +119,51 @@ class VentanaGrafico:
 
         self.recorridoBctk = []
 
-    def bckt(self, candidato, solucion):
-        print("prueba 165 " + str(len(candidato)))
-        opcion = []
-        print("prueba 167 " + str(candidato) + " " + str(solucion))
-        if len(candidato) <= (len(self.palabra) + 1):
-            y = solucion[len(solucion) - 1]
-            print("prueba 170 " + str(len(candidato)))
+    # def bckt(self, candidato, solucion):
+    #     print("prueba 165 " + str(len(candidato)))
+    #     opcion = []
+    #     print("prueba 167 " + str(candidato) + " " + str(solucion))
+    #     if len(candidato) <= (len(self.palabra) + 1):
+    #         y = solucion[len(solucion) - 1]
+    #         print("prueba 170 " + str(len(candidato)))
+    #
+    #         if y[len(y) - 1] in self.aceptacion and len(y) == (len(self.palabra) + 1):
+    #             for e in y:
+    #                 self.recorridoBctk.append(e)
+    #             return
+    #         else:
+    #             if solucion[0] == ["0"]:
+    #                 solucion.pop()
+    #
+    #             x = candidato.copy()
+    #             solucion.append(x)
+    #             print("prueba 182 " + str(solucion))
+    #
+    #             uActual = x[len(x) - 1]
+    #             print("prueba 185 " + str(uActual))
+    #             if len(candidato) <= len(self.palabra):
+    #
+    #                 for i, t in enumerate(self.trans):
+    #                     if t[0] == uActual and t[2] == self.palabra[len(candidato) - 1]:
+    #                         opcion.insert(i, t[1])
+    #                     print("prueba 189 " + str(opcion))
+    #
+    #                 for o in opcion:
+    #                     x.append(o)
+    #                     print("prueba 193 " + str(x))
+    #                     self.bckt(x, solucion)
+    #                     x.pop()
 
-            if y[len(y) - 1] in self.aceptacion and len(y) == (len(self.palabra) + 1):
-                for e in y:
-                    self.recorridoBctk.append(e)
-                return
-            else:
-                if solucion[0] == ["0"]:
-                    solucion.pop()
-
-                x = candidato.copy()
-                solucion.append(x)
-                print("prueba 182 " + str(solucion))
-
-                uActual = x[len(x) - 1]
-                print("prueba 185 " + str(uActual))
-                if len(candidato) <= len(self.palabra):
-
-                    for i, t in enumerate(self.trans):
-                        if t[0] == uActual and t[2] == self.palabra[len(candidato) - 1]:
-                            opcion.insert(i, t[1])
-                        print("prueba 189 " + str(opcion))
-
-                    for o in opcion:
-                        x.append(o)
-                        print("prueba 193 " + str(x))
-                        self.bckt(x, solucion)
-                        x.pop()
-
-    def textoRecorrido(self, ventana):
-
-        textoEstInicial = "El recorrido es: " + str(self.recorridoBctk)
-        textoPalabra = "La palabra a seguir es: " + str(self.palabra)
-        miFuente = pygame.font.SysFont("Arial", 20)
-        textoEI = miFuente.render(textoEstInicial, 1, (0, 0, 0))
-        ventana.blit(textoEI, (20, 510))
-        textoPA = miFuente.render(textoPalabra, 1, (0, 0, 0))
-        ventana.blit(textoPA, (20, 564))
 
     def textoInformacion(self, ventana):
 
         textoEstInicial = "El estado inicial es: " + str(self.inicial)
         textoEstAceptacion = "El estado de aceptación es: " + str(self.aceptacion)
-        textoPalabra = "La palabra a seguir es: " + str(self.palabra)
         miFuente = pygame.font.SysFont("Arial", 20)
         textoEI = miFuente.render(textoEstInicial, 1, (0, 0, 0))
         ventana.blit(textoEI, (20, 510))
         textoEA = miFuente.render(textoEstAceptacion, 1, (0, 0, 0))
         ventana.blit(textoEA, (20, 535))
-        textoPA = miFuente.render(textoPalabra, 1, (0, 0, 0))
-        ventana.blit(textoPA, (20, 564))
 
     def graficarAutomata(self, ventana):
 
@@ -202,12 +185,6 @@ class VentanaGrafico:
         _ventana.show()
         app.exec_()
 
-    def EPalabra(self):
-        app = QApplication(sys.argv)
-        _ventana = VentanaEPalabra()
-        _ventana.show()
-        app.exec_()
-
     def PNoAceptada(self):
         app = QApplication(sys.argv)
         _ventana = VentanaPNoAceptada()
@@ -219,26 +196,6 @@ class VentanaEAlfabeto(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         uic.loadUi("VentanaEAlfabeto.ui", self)
-        self.bAceptar.clicked.connect(self.Cancelar)
-
-    def Cancelar(self, QEvent):
-        self.close()
-
-
-class VentanaEPalabra(QMainWindow):
-    def __init__(self):
-        QMainWindow.__init__(self)
-        uic.loadUi("VentanaEPalabra.ui", self)
-        self.bAceptar.clicked.connect(self.Cancelar)
-
-    def Cancelar(self, QEvent):
-        self.close()
-
-
-class VentanaPNoAceptada(QMainWindow):
-    def __init__(self):
-        QMainWindow.__init__(self)
-        uic.loadUi("VentanaPNoAceptada.ui", self)
         self.bAceptar.clicked.connect(self.Cancelar)
 
     def Cancelar(self, QEvent):
@@ -271,7 +228,6 @@ if __name__ == '__main__':
     inicial = ["A"]
     alf = [0, 1]
     aceptacion = ["C"]
-    palabra = [1, 1, 1, 1, 0, 0, 0]
 
     # estados =[]
     # for nodo in range(len(A.listaTran)):
@@ -286,15 +242,13 @@ if __name__ == '__main__':
     #     op = A.listaTran[tran].operacion
     #     trans.insert(tran, [o, d, op])
 
-    # aceptacion = A.estadoInicial
+    # aceptacion = A.getEstadoInicial
 
-    # aceptacion = A.estadosAceptacion
+    # aceptacion = A.getEstadosAceptacion
 
-    x = dibujarAutomata(alf, estados, inicial, trans, aceptacion, palabra)
-    v = VentanaGrafico(alf, inicial, aceptacion, estados, trans, palabra)
+    x = dibujarAutomata(alf, estados, inicial, trans, aceptacion)
+    v = VentanaGrafico(alf, inicial, aceptacion, estados, trans)
     if x == 2:
         v.iniciarVentana()
-    elif x == 1:
-        v.EPalabra()
     else:
         v.EAlfabeto()
