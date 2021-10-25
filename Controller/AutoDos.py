@@ -27,6 +27,12 @@ class Automata:
     def getEstadosAceptacion(self):
         return self.estadosAceptacion
 
+    def setEstadoInicial(self, estadoInicial):
+        self.estadoInicial.append(estadoInicial)
+
+    def setEstadosAceptacion(self, estadosAceptacion):
+        self.estadosAceptacion.append(estadosAceptacion)
+
     def getListaVisitados(self): # necesario?
         return self.listaVisitados
 
@@ -120,12 +126,23 @@ class Automata:
     def cargarRedInicial(self, ruta): # --> Metodo que se alimenta del json
         with open(ruta) as contenido:
             redAcme = json.load(contenido)
+
         for nodosuno in redAcme["uno"]["Nodos"]:
             self.ingresarNodoEstado(nodosuno)
+
         for transuno in redAcme["uno"]["Trans"]:
             #print('-->', transuno[2])
             #print(transuno[0], transuno[1], transuno[2], '--> el for')
             self.ingresarTransicion(transuno[0], transuno[1], transuno[2])
+
+        for nodosuno in redAcme["uno"]["Inicial"]:
+            self.setEstadoInicial(nodosuno)
+            #print(self.getEstadoInicial(), 'Inicial')
+
+        for nodosuno in redAcme["uno"]["Aceptacion"]:
+            self.setEstadosAceptacion(nodosuno)
+            #print(self.getEstadoInicial(), 'Final')
+
         #for nodosdos in redAcme["dos"]["Nodos"]:
             #self.ingresarNodoEstado(nodosdos)
         #for transdos in redAcme["dos"]["Trans"]:
