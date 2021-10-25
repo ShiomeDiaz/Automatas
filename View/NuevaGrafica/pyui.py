@@ -16,7 +16,9 @@ class Ui_MainWindow(object):
 
     def setupUi(self, MainWindow, automata):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(417, 447)
+        MainWindow.setMinimumSize(417, 447)
+        MainWindow.setMaximumSize(417, 447)
+        #MainWindow.resize(417, 447)
         self.automata = automata
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -34,7 +36,8 @@ class Ui_MainWindow(object):
         self.label.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.label.setStyleSheet("background-color: rgba(0, 0, 0,0%);")
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("C:/Users/Shio/PycharmProjects/Automatas/View/NuevaGrafica/icono.png"))
+        self.label.setPixmap(QtGui.QPixmap('./icono.png'))
+        #self.label.setPixmap(QtGui.QPixmap("C:/Users/Shio/PycharmProjects/Automatas/View/NuevaGrafica/icono.png"))
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.pushButton = QtWidgets.QPushButton(self.frame)
@@ -74,8 +77,11 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         self.pushButton.clicked.connect(self.onPushButtonCLicked)
+        self.pushButton_2.clicked.connect(self.onPushButtonCLicked2)
     def onPushButtonCLicked(self):
-        print(self.automata.amplitud('A'))
+        print(self.automata.getEstadoInicial())
+    def onPushButtonCLicked2(self):
+        print(self.automata.getEstadosAceptacion())
 
 
     def retranslateUi(self, MainWindow):
