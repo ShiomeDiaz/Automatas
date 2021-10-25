@@ -8,6 +8,7 @@ from pygame.locals import *
 from PyQt5.QtWidgets import QApplication,QMainWindow,QWidget, QPushButton, QMessageBox
 from PyQt5 import uic
 import networkx as nx
+from Controller.AutoDos import Automata
 
 
 # Todos los parámetros son listas o tuplas
@@ -271,6 +272,12 @@ if __name__ == '__main__':
     alf = [0, 1]
     aceptacion = ["C"]
     palabra = [1, 1, 1, 1, 0, 0, 0]
+
+    # estados =[]
+    # for nodo in range(len(A.listaTran)):
+    #     estados.insert(nodo,A.listaNodoEstado[nodo].estado)
+    # trans= []
+    # for tran in range(len(A.))
 
     x = dibujarAutomata(alf, estados, inicial, trans, aceptacion, palabra)
     v = VentanaGrafico(alf, inicial, aceptacion, estados, trans, palabra)
