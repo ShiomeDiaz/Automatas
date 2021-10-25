@@ -6,7 +6,7 @@ from Controller.AutoDos import Automata
 if __name__ == "__main__":
     A = Automata()
     A.cargarRedInicial("../Data/datos.json")
-    print(A.amplitud('A'))
+    print(A.amplitud('A'), 'Amplitud')
     #A.imprimirNodoEstado()
     #A.separador()
     #A.imprimirTransicion()

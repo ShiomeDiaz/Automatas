@@ -4,6 +4,7 @@ from Model.Transicion import Transicion
 from Model.nodoEstado import nodoEstado
 import json
 
+# Trabajamos aqui pilas gonorreas
 
 class Automata:
     def __init__(self):
@@ -49,14 +50,14 @@ class Automata:
             if self.verificarNodoEstado(origen) != None and self.verificarNodoEstado(destino) != None: #--> problema
 
                 self.listaTran.append(Transicion(origen, destino, int(operacion)))
-                for i in self.listaTran:
-                    print(i.getOrigen(), i.getDestino(), '--> lista malparida')
+                #for i in self.listaTran:
+                    #print(i.getOrigen(), i.getDestino(), '--> lista malparida')
 
                 self.verificarNodoEstado(origen).getListaTransicion().append(destino)
 
 
     def verificarTransicion(self, origen, destino, operacion):
-        print(origen, destino, operacion,'--> el careverga')
+        #print(origen, destino, operacion,'--> el careverga')
         #print(self.listaNodoEstado)
         #print(self.listaTran, 'Mp')
         for Transicion in self.listaTran:
@@ -64,7 +65,7 @@ class Automata:
             #print(Transicion.getOrigen(), '=',origen, '---', Transicion.getDestino(),'=', destino, Transicion.getOperacion())
             #print(Transicion.getOperacion())
             if Transicion.getOrigen() == origen and Transicion.getDestino() == destino:
-                print('gonorrea')
+                #print('gonorrea')
                 return Transicion
         return None
     '''
@@ -108,7 +109,7 @@ class Automata:
             self.ingresarNodoEstado(nodosuno)
         for transuno in redAcme["uno"]["Trans"]:
             #print('-->', transuno[2])
-            print(transuno[0], transuno[1], transuno[2], '--> el for')
+            #print(transuno[0], transuno[1], transuno[2], '--> el for')
             self.ingresarTransicion(transuno[0], transuno[1], transuno[2])
         #for nodosdos in redAcme["dos"]["Nodos"]:
             #self.ingresarNodoEstado(nodosdos)
