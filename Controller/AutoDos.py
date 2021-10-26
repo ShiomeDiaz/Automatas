@@ -123,7 +123,7 @@ class Automata:
     [A, B]U[C, D] ==> [AC, AD, BC, BD]
     '''
 
-    def cargarRedInicial(self, ruta): # --> Metodo que se alimenta del json
+    def cargarRedInicialUNO(self, ruta): # --> Metodo que se alimenta del json
         with open(ruta) as contenido:
             redAcme = json.load(contenido)
 
@@ -143,6 +143,30 @@ class Automata:
             self.setEstadosAceptacion(nodosuno)
             #print(self.getEstadoInicial(), 'Final')
 
+
+        #for nodosdos in redAcme["dos"]["Nodos"]:
+            #self.ingresarNodoEstado(nodosdos)
+        #for transdos in redAcme["dos"]["Trans"]:
+            #self.ingresarTransicion(transdos[0], transdos[1], transdos[2])
+    def cargarRedInicialDOS(self, ruta): # --> Metodo que se alimenta del json
+        with open(ruta) as contenido:
+            redAcme = json.load(contenido)
+
+        for nodosdos in redAcme["dos"]["Nodos"]:
+            self.ingresarNodoEstado(nodosdos)
+
+        for transdos in redAcme["dos"]["Trans"]:
+            #print('-->', transuno[2])
+            #print(transuno[0], transuno[1], transuno[2], '--> el for')
+            self.ingresarTransicion(transdos[0], transdos[1], transdos[2])
+
+        for nodosdos in redAcme["dos"]["Inicial"]:
+            self.setEstadoInicial(nodosdos)
+            #print(self.getEstadoInicial(), 'Inicial')
+
+        for nodosdos in redAcme["dos"]["Aceptacion"]:
+            self.setEstadosAceptacion(nodosdos)
+            #print(self.getEstadoInicial(), 'Final')
         #for nodosdos in redAcme["dos"]["Nodos"]:
             #self.ingresarNodoEstado(nodosdos)
         #for transdos in redAcme["dos"]["Trans"]:

@@ -14,12 +14,13 @@ from Controller.AutoDos import Automata
 
 class Ui_MainWindow(object):
 
-    def setupUi(self, MainWindow, automata):
+    def setupUi(self, MainWindow, automatauno, automatados):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setMinimumSize(417, 447)
         MainWindow.setMaximumSize(417, 447)
         #MainWindow.resize(417, 447)
-        self.automata = automata
+        self.automatauno = automatauno
+        self.automatados = automatados
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -70,6 +71,12 @@ class Ui_MainWindow(object):
 "\n"
 "border-radius:20px;")
         self.pushButton_5.setObjectName("pushButton_5")
+        self.pushButton_6 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_6.setGeometry(QtCore.QRect(160, 310, 75, 23))
+        self.pushButton_6.setStyleSheet("background-color: qlineargradient(spread:reflect, x1:0.5, y1:0, x2:1, y2:0, stop:1 rgba(62, 62, 62, 255));\n"
+"\n"
+"border-radius:20px;")
+        self.pushButton_6.setObjectName("pushButton_6")
         self.verticalLayout.addWidget(self.frame)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -78,20 +85,33 @@ class Ui_MainWindow(object):
 
         self.pushButton.clicked.connect(self.onPushButtonCLicked)
         self.pushButton_2.clicked.connect(self.onPushButtonCLicked2)
+        self.pushButton_3.clicked.connect(self.onPushButtonCLicked3)
+        self.pushButton_4.clicked.connect(self.onPushButtonCLicked4)
+        self.pushButton_5.clicked.connect(self.onPushButtonCLicked5)
+        self.pushButton_6.clicked.connect(self.onPushButtonCLicked6)
     def onPushButtonCLicked(self):
-        print(self.automata.getEstadoInicial())
+        print(self.automatauno.getEstadoInicial())
     def onPushButtonCLicked2(self):
-        print(self.automata.getEstadosAceptacion())
+        print(self.automatauno.getEstadosAceptacion())
+    def onPushButtonCLicked3(self):
+        print(self.automatauno.amplitud('A'))
+    def onPushButtonCLicked4(self):
+        print(self.automatados.getEstadoInicial())
+    def onPushButtonCLicked5(self):
+        print(self.automatados.getEstadosAceptacion())
+    def onPushButtonCLicked6(self):
+        print(self.automatados.amplitud('C'))
 
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton.setText(_translate("MainWindow", "uno"))
-        self.pushButton_2.setText(_translate("MainWindow", "dos"))
-        self.pushButton_3.setText(_translate("MainWindow", "tres"))
-        self.pushButton_4.setText(_translate("MainWindow", "cuatro"))
-        self.pushButton_5.setText(_translate("MainWindow", "cinco"))
+        self.pushButton.setText(_translate("MainWindow", "Inicial uno"))
+        self.pushButton_2.setText(_translate("MainWindow", "Aceptacion uno"))
+        self.pushButton_3.setText(_translate("MainWindow", "Recorrido uno"))
+        self.pushButton_4.setText(_translate("MainWindow", "Inicial dos"))
+        self.pushButton_5.setText(_translate("MainWindow", "Aceptacion dos"))
+        self.pushButton_6.setText(_translate("MainWindow", "Recorrido dos"))
 '''
 if __name__ == '__main__':
     import sys

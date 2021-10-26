@@ -6,7 +6,7 @@
     ],
     "Trans" : [["A", "B", 1], ["A", "A", 0], ["B", "B", 1], ["B", "A", 0] ],
     "Inicial" : "A",
-    "Aceptacion" : ["B", "C", "D"]
+    "Aceptacion" : ["B"]
   },
     "dos": {
       "Nodos": [
