@@ -187,7 +187,6 @@ class VentanaGrafico:
 
     def PNoAceptada(self):
         app = QApplication(sys.argv)
-        _ventana = VentanaPNoAceptada()
         _ventana.show()
         app.exec_()
 

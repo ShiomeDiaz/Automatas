@@ -2,7 +2,7 @@ from Controller.AutoDos import Automata
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from NuevaGrafica.pyui import Ui_MainWindow
-
+import copy
 
 
 
@@ -36,13 +36,14 @@ if __name__ == "__main__":
 
 
 
-
     #A.caminoMasCorto("Silvestre", "Correcaminos")
     #A.dijkstra("Silvestre", "Piolin")
     #A.profundidad(1, 'Silvestre')
     #la_animacion = animacion(G)
     #la_animacion = animacion(G)
     #la_animacion.ejecutar()
+
+
 
 
 # A.separador()

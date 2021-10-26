@@ -2,7 +2,6 @@ class nodoEstado:
     def __init__(self, estado):
         self.estado = estado
         self.listaTransicion = []
-        self.estadoAceptacion = bool
 
     # get & set
 
@@ -17,9 +16,3 @@ class nodoEstado:
 
     def setListaTransicion(self, listaTransicion):
         self.listaTransicion = listaTransicion
-
-    def getEstadoAceptacion(self):
-        return self.estadoAceptacion
-
-    def setEstadoAceptacion(self, estadoAceptacion):
-        self.estadoAceptacion = estadoAceptacion
