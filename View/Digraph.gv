@@ -3,9 +3,10 @@ digraph {
 	ini [shape=point]
 	A
 	ini -> A
-	B
-	C [shape=doublecircle]
-	E
+	B [shape=doublecircle]
+	C
+	D [shape=doublecircle]
+	E [shape=doublecircle]
 	F
 	A -> B [label=1]
 	A -> A [label=0]

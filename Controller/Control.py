@@ -12,19 +12,30 @@ class Control:
 
     # Metodo que devuelve el complemento de un automata
     def complemento(self,nAutomata):
+
         automataComplemento = copy.deepcopy(self.automatas[nAutomata])
         aceptacion= copy.deepcopy(automataComplemento.estadosAceptacion)
 
-        for estado in range(len(automataComplemento.listaNodoEstado)):
-            automataComplemento.estadosAceptacion.append(automataComplemento.listaNodoEstado.estado)
-
+        for estado in automataComplemento.getListaNodoEstado():
+            automataComplemento.estadosAceptacion.append(estado.getEstado())
 
         for i in range(len(aceptacion)):
-            for j in range(len(automataComplemento.listaNodoEstado)):
-                if aceptacion[i]==automataComplemento.estadosAceptacion[j]:
-                    automataComplemento.estadosAceptacion.pop(i)
+            reinicio = True
+            while reinicio:
+                reinicio = False
+                for j in range(len(automataComplemento.estadosAceptacion)):
+                    if aceptacion[i] == automataComplemento.estadosAceptacion[j]:
+                        automataComplemento.estadosAceptacion.pop(j)
+                        reinicio = True
+                        break
 
-
-
-
+        print(automataComplemento)
         return automataComplemento
+
+    # return ala union
+
+    def Union(self):
+        AutomatA = copy.deepcopy(self.automatas[0])
+        AutomatB = copy.deepcopy(self.automatas[1])
+
+        automataUnion = copy.deepcopy(self.automatas[0])

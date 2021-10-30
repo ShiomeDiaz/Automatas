@@ -221,29 +221,39 @@ class Cursor(pygame.Rect):
 
 
 if __name__ == '__main__':
-    estados = ["A", "B", "C", "E", "F"]
-    trans = [["A", "B", 1], ["A", "A", 0], ["A", "E", 0], ["E", "D", 1], ["F", "F", 1], ["D", "C", 1],["B", "A", 0],
-             ["E", "C", 0], ["F", "D", 0], ["B", "B", 1]]
-    inicial = ["A"]
-    alf = [0, 1]
-    aceptacion = ["C"]
+    # estados = ["A", "B", "C", "E", "F"]
+    # trans = [["A", "B", 1], ["A", "A", 0], ["A", "E", 0], ["E", "D", 1], ["F", "F", 1], ["D", "C", 1],["B", "A", 0],
+    #          ["E", "C", 0], ["F", "D", 0], ["B", "B", 1]]
+    # inicial = ["A"]
+    # alf = [0, 1]
+    # aceptacion = ["C"]
 
-    # estados =[]
-    # for nodo in range(len(A.listaTran)):
-    #     estados.insert(nodo,A.listaNodoEstado[nodo].estado)
-    # trans= []
-    # for tran in range(len(A.))
+    automataUno = Automata()
+    automataUno.cargarRedInicialUNO("../Data/datos.json")
 
-    # trans = []
-    # for tran in range(len(A.listaTran)):
-    #     o = A.listaTran[tran].origen
-    #     d = A.listaTran[tran].destino
-    #     op = A.listaTran[tran].operacion
-    #     trans.insert(tran, [o, d, op])
+    estados =[]
+    for nodo in range(len(automataUno.listaTran)):
+        estados.insert(nodo,automataUno.listaNodoEstado[nodo].estado)
+    trans = []
+    for tran in range(len(automataUno.listaTran)):
+        o = automataUno.listaTran[tran].origen
+        d = automataUno.listaTran[tran].destino
+        op = automataUno.listaTran[tran].operacion
+        trans.insert(tran, [o, d, op])
 
     # aceptacion = A.getEstadoInicial
 
     # aceptacion = A.getEstadosAceptacion
+    # automataUno = Automata()
+
+    # automataUno.cargarRedInicialUNO("../Data/datos.json")
+    # estados = automataUno.getListaNodoEstado()
+    # trans = automataUno.getListaTran()
+    inicial = automataUno.getEstadoInicial()
+    aceptacion = automataUno.getEstadosAceptacion()
+    #
+    alf = [0, 1]
+    #
 
     x = dibujarAutomata(alf, estados, inicial, trans, aceptacion)
     v = VentanaGrafico(alf, inicial, aceptacion, estados, trans)

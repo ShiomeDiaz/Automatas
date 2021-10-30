@@ -135,6 +135,7 @@ class Automata:
             #print(transuno[0], transuno[1], transuno[2], '--> el for')
             self.ingresarTransicion(transuno[0], transuno[1], transuno[2])
 
+
         for nodosuno in redAcme["uno"]["Inicial"]:
             self.setEstadoInicial(nodosuno)
             #print(self.getEstadoInicial(), 'Inicial')

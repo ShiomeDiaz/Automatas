@@ -11,6 +11,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from View import VentanaAutomata
 from Controller.AutoDos import Automata
+from Controller.Control import Control
+from View.VentanaAutomata import VentanaGrafico, dibujarAutomata
+
 
 class Ui_MainWindow(object):
 
@@ -21,6 +24,7 @@ class Ui_MainWindow(object):
         #MainWindow.resize(417, 447)
         self.automatauno = automatauno
         self.automatados = automatados
+        self.listautomata = [automatauno, automatados]
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -90,25 +94,52 @@ class Ui_MainWindow(object):
         self.pushButton_5.clicked.connect(self.onPushButtonCLicked5)
         self.pushButton_6.clicked.connect(self.onPushButtonCLicked6)
     def onPushButtonCLicked(self):
-        print(self.automatauno.getEstadoInicial())
+        self.grafica(self.automatauno)
+
     def onPushButtonCLicked2(self):
-        print(self.automatauno.getEstadosAceptacion())
+        C = Control(self.listautomata)
+        self.grafica(C.complemento(0))
+
+
     def onPushButtonCLicked3(self):
-        print(self.automatauno.amplitud('A'))
+        self.grafica(self.automatados)
     def onPushButtonCLicked4(self):
-        print(self.automatados.getEstadoInicial())
+        C = Control(self.listautomata)
+        self.grafica(C.complemento(1))
+
     def onPushButtonCLicked5(self):
         print(self.automatados.getEstadosAceptacion())
     def onPushButtonCLicked6(self):
         print(self.automatados.amplitud('C'))
 
+    def grafica(self, automata):
+
+        auto = automata
+        alf = [0, 1]
+        estados = []
+        for i in auto.getListaNodoEstado():
+            estados.append(i.getEstado())
+        trans = []
+        for i in auto.getListaTran():
+           trans.append([i.getOrigen(), i.getDestino(), i.getOperacion()])
+
+        inicial = auto.getEstadoInicial()
+        aceptacion = auto.getEstadosAceptacion()
+
+        x = dibujarAutomata(alf, estados, inicial, trans, aceptacion)
+        v = VentanaGrafico(alf, inicial, aceptacion, estados, trans)
+        if x == 2:
+            v.iniciarVentana()
+        else:
+            v.EAlfabeto()
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton.setText(_translate("MainWindow", "Inicial uno"))
-        self.pushButton_2.setText(_translate("MainWindow", "Aceptacion uno"))
-        self.pushButton_3.setText(_translate("MainWindow", "Recorrido uno"))
+        self.pushButton.setText(_translate("MainWindow", "Automata Uno"))
+        self.pushButton_2.setText(_translate("MainWindow", "Complemento Uno"))
+        self.pushButton_3.setText(_translate("MainWindow", "Automata dos"))
         self.pushButton_4.setText(_translate("MainWindow", "Inicial dos"))
         self.pushButton_5.setText(_translate("MainWindow", "Aceptacion dos"))
         self.pushButton_6.setText(_translate("MainWindow", "Recorrido dos"))
