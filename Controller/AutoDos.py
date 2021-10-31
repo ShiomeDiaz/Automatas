@@ -14,6 +14,7 @@ class Automata:
         self.listaBloqueadas = [] # necesario?
         self.estadoInicial=[]
         self.estadosAceptacion=[]
+        self.alfabeto = []
 
     def getListaNodoEstado(self):
         return self.listaNodoEstado
@@ -32,6 +33,11 @@ class Automata:
 
     def setEstadosAceptacion(self, estadosAceptacion):
         self.estadosAceptacion.append(estadosAceptacion)
+
+    def getAlfabeto(self):
+        return self.alfabeto
+    def setAlfabeto(self, alfabeto):
+        self.alfabeto.append(alfabeto)
 
     def getListaVisitados(self): # necesario?
         return self.listaVisitados
@@ -114,8 +120,6 @@ class Automata:
                     cola.append(nodoEstado)
                     visitadosA.append(Transicion)
         return visitadosA
-    def recorrido(self, lista): # ---> metodo de recorrido mediante la quintupla
-        pass
 
     '''Creacion de metodos para operaciones,
     Para un solo grafo ---> Complemento, reverso y completar automata en caso de que este incompleto
@@ -144,11 +148,9 @@ class Automata:
             self.setEstadosAceptacion(nodosuno)
             #print(self.getEstadoInicial(), 'Final')
 
+        for nodosuno in redAcme["uno"]["Alfabeto"]:
+            self.setAlfabeto(nodosuno)
 
-        #for nodosdos in redAcme["dos"]["Nodos"]:
-            #self.ingresarNodoEstado(nodosdos)
-        #for transdos in redAcme["dos"]["Trans"]:
-            #self.ingresarTransicion(transdos[0], transdos[1], transdos[2])
     def cargarRedInicialDOS(self, ruta): # --> Metodo que se alimenta del json
         with open(ruta) as contenido:
             redAcme = json.load(contenido)
@@ -167,11 +169,9 @@ class Automata:
 
         for nodosdos in redAcme["dos"]["Aceptacion"]:
             self.setEstadosAceptacion(nodosdos)
-            #print(self.getEstadoInicial(), 'Final')
-        #for nodosdos in redAcme["dos"]["Nodos"]:
-            #self.ingresarNodoEstado(nodosdos)
-        #for transdos in redAcme["dos"]["Trans"]:
-            #self.ingresarTransicion(transdos[0], transdos[1], transdos[2])
+
+        for nodosdos in redAcme["dos"]["Alfabeto"]:
+            self.setAlfabeto(nodosdos)
 
 
 

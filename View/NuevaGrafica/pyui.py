@@ -102,13 +102,15 @@ class Ui_MainWindow(object):
 
 
     def onPushButtonCLicked3(self):
-        self.grafica(self.automatados)
-    def onPushButtonCLicked4(self):
         C = Control(self.listautomata)
-        self.grafica(C.complemento(1))
+        self.grafica(C.Union())
+    def onPushButtonCLicked4(self):
+        self.grafica(self.automatados)
+
 
     def onPushButtonCLicked5(self):
-        print(self.automatados.getEstadosAceptacion())
+        C = Control(self.listautomata)
+        self.grafica(C.complemento(1))
     def onPushButtonCLicked6(self):
         print(self.automatados.amplitud('C'))
 
@@ -139,19 +141,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton.setText(_translate("MainWindow", "Automata Uno"))
         self.pushButton_2.setText(_translate("MainWindow", "Complemento Uno"))
-        self.pushButton_3.setText(_translate("MainWindow", "Automata dos"))
-        self.pushButton_4.setText(_translate("MainWindow", "Inicial dos"))
-        self.pushButton_5.setText(_translate("MainWindow", "Aceptacion dos"))
-        self.pushButton_6.setText(_translate("MainWindow", "Recorrido dos"))
-'''
-if __name__ == '__main__':
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    A = Automata()
-    A.cargarRedInicial("../../Data/datos.json")
-    MainWindow.show()
-    sys.exit(app.exec_())
-'''
+        self.pushButton_3.setText(_translate("MainWindow", "Reverso  Uno"))
+        self.pushButton_4.setText(_translate("MainWindow", "Automata dos"))
+        self.pushButton_5.setText(_translate("MainWindow", "Complemento dos"))
+        self.pushButton_6.setText(_translate("MainWindow", "Reverso dos"))

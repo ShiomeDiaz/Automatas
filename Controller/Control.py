@@ -28,14 +28,43 @@ class Control:
                         automataComplemento.estadosAceptacion.pop(j)
                         reinicio = True
                         break
-
-        print(automataComplemento)
         return automataComplemento
 
-    # return ala union
+    # Union
 
     def Union(self):
+        listaNodos = []
+        estadoInicial = []
+        estadoFinal = []
         AutomatA = copy.deepcopy(self.automatas[0])
         AutomatB = copy.deepcopy(self.automatas[1])
 
-        automataUnion = copy.deepcopy(self.automatas[0])
+        #  alimentamos lista nodos
+        for i in AutomatA.getListaNodoEstado():
+            for j in AutomatB.getListaNodoEstado():
+                listaNodos.append(i.getEstado() + j.getEstado())
+        # print(listaNodos, 'estados')
+
+
+        # alimentar estado inicial
+
+        for i in AutomatA.getEstadoInicial():
+            for j in AutomatB.getEstadoInicial():
+                estadoInicial.append(i+ j)
+        # print(estadoInicial, 'estados iniciales')
+
+        # alimentar estados Aceptacion
+        for i in AutomatA.getEstadosAceptacion():
+            for j in AutomatB.getEstadosAceptacion():
+                estadoFinal.append(i+ j)
+        # print(estadoFinal, 'estados aceptacion')
+
+
+        # alimentamos lista transiciones
+
+        # transicion = []
+        # for i in AutomatA.getListaTran():
+        #     transicion.append(i.getOrigen())
+        # #print(transicion)
+        #
+        # #print(AutomatA.getAlfabeto())

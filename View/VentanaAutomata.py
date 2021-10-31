@@ -72,7 +72,7 @@ class VentanaGrafico:
                         self.recorerPalabra(ventana)
 
                 if evento.type == QUIT:
-                    pygame.quit()
+                    #ygame.quit()
                     sys.exit()
 
             for b in botones:
@@ -221,16 +221,8 @@ class Cursor(pygame.Rect):
 
 
 if __name__ == '__main__':
-    # estados = ["A", "B", "C", "E", "F"]
-    # trans = [["A", "B", 1], ["A", "A", 0], ["A", "E", 0], ["E", "D", 1], ["F", "F", 1], ["D", "C", 1],["B", "A", 0],
-    #          ["E", "C", 0], ["F", "D", 0], ["B", "B", 1]]
-    # inicial = ["A"]
-    # alf = [0, 1]
-    # aceptacion = ["C"]
-
     automataUno = Automata()
     automataUno.cargarRedInicialUNO("../Data/datos.json")
-
     estados =[]
     for nodo in range(len(automataUno.listaTran)):
         estados.insert(nodo,automataUno.listaNodoEstado[nodo].estado)
