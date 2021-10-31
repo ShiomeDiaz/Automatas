@@ -61,10 +61,12 @@ class Automata:
         return None
 
     def completarAutomata(self):
-        estados = ["A", "B", "C"]
-        trans = [["A", "B", 1], ["A", "B", 2], ["A", "A", 0], ["B", "A", 0], ["B", "B", 1], ["C", "B", 1]]
-        alf = [0, 1, 2]
-
+        estados = []
+        for i in self.listaNodoEstado:
+            estados.append(i.getEstado())
+        trans = []
+        for i in self.listaTran:
+            trans.append([i.getOrigen(), i.getDestino(), i.getOperacion()])
         sumidero = False
         copiaEstados = copy.deepcopy(estados)
         copiaTrans = copy.deepcopy(trans)
@@ -78,29 +80,42 @@ class Automata:
                     contadorTrans = contadorTrans + 1
                     valorTrans.append(trans[j][2])
 
-            if contadorTrans != len(alf):
-                transSumidero = copy.deepcopy(alf)
-                for l in range(len(alf)):
+            if contadorTrans != len(self.alfabeto):
+                transSumidero = copy.deepcopy(self.alfabeto)
+                for l in range(len(self.alfabeto)):
                     for m in range(len(valorTrans)):
-                        if alf[l] == valorTrans[m]:
-                            transSumidero.pop(0)
+                        if self.alfabeto[l] == valorTrans[m]:
+                            transSumidero.pop(l)
+
 
                 if sumidero == True:
                     for n in range(len(transSumidero)):
-                        nuevaTrans = [estados[i], "sumidero", transSumidero[n]]
+                        nuevaTrans = [estados[i], "sum", transSumidero[n]]
                         copiaTrans.append(nuevaTrans)
 
                 if sumidero == False:
                     sumidero = True
-                    copiaEstados.append("sumidero")
+                    copiaEstados.append("sum")
                     for n in range(len(transSumidero)):
-                        nuevaTrans = [estados[i], "sumidero", transSumidero[n]]
+                        nuevaTrans = [estados[i], "sum", transSumidero[n]]
                         copiaTrans.append(nuevaTrans)
+
 
         estados = copiaEstados
         trans = copiaTrans
-        print(estados)
-        print(trans)
+
+        for o in range(len(estados)):
+            if estados[o]=="sum":
+                nodo=nodoEstado("sum")
+                self.listaNodoEstado.append(nodo)
+
+        self.listaTran=[]
+        for p in range(len(trans)):
+            o= trans[p][0]
+            d= trans[p][1]
+            op= trans[p][2]
+            transicion= Transicion(o,d,op)
+            self.listaTran.append(transicion)
 
     def obtenerOrigen(self, estado):
         for i in range(len(self.listaNodoEstado)):
