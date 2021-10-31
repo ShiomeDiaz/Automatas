@@ -1,21 +1,13 @@
 digraph {
 	graph [rankdir=LR]
 	ini [shape=point]
-	A [shape=doublecircle]
-	ini -> A
-	B
-	C [shape=doublecircle]
-	D
-	E
-	F [shape=doublecircle]
-	A -> B [label=1]
-	A -> A [label=0]
-	A -> E [label=0]
-	E -> D [label=1]
-	F -> F [label=1]
-	D -> C [label=1]
-	B -> A [label=0]
-	E -> C [label=0]
-	F -> D [label=0]
-	B -> B [label=1]
+	AC
+	ini -> AC
+	AD
+	BC
+	BD [shape=doublecircle]
+	AC -> BC [label=1]
+	AC -> AD [label=0]
+	AD -> AD [label=0]
+	BC -> BC [label=1]
 }

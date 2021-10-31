@@ -1,3 +1,5 @@
+import json
+
 from Controller.AutoDos import Automata
 import copy
 
@@ -38,12 +40,13 @@ class Control:
         estadoFinal = []
         AutomatA = copy.deepcopy(self.automatas[0])
         AutomatB = copy.deepcopy(self.automatas[1])
+        AutomatC = copy.deepcopy(self.automatas[0])
 
         #  alimentamos lista nodos
         for i in AutomatA.getListaNodoEstado():
             for j in AutomatB.getListaNodoEstado():
                 listaNodos.append(i.getEstado() + j.getEstado())
-        # print(listaNodos, 'estados')
+        print(listaNodos, 'estados')
 
 
         # alimentar estado inicial
@@ -51,20 +54,45 @@ class Control:
         for i in AutomatA.getEstadoInicial():
             for j in AutomatB.getEstadoInicial():
                 estadoInicial.append(i+ j)
-        # print(estadoInicial, 'estados iniciales')
+        print(estadoInicial, 'estados iniciales')
 
         # alimentar estados Aceptacion
         for i in AutomatA.getEstadosAceptacion():
             for j in AutomatB.getEstadosAceptacion():
                 estadoFinal.append(i+ j)
-        # print(estadoFinal, 'estados aceptacion')
+        print(estadoFinal, 'estados aceptacion')
+        listalfa = []
+        for i in AutomatA.getAlfabeto():
+            for j in AutomatB.getAlfabeto():
+                if i == j:
+                    listalfa.append(i)
+        print(listalfa)
 
 
-        # alimentamos lista transiciones
+        # re prueba
+        listaSupersaya = []
+        listaNodosAux = listaNodos
+        for i in listaNodosAux:
+            # print('Transicion', ' ', i[0], i[1])
+            for j in AutomatA.getListaTran():
+                for k in AutomatA.getAlfabeto():
+                    if i[0] == j.getOrigen() and j.getOperacion() == k:
+                        # me imprime que encontro la transiciond e A
+                        #listaSupersaya.append([j.getOrigen(), j.getDestino(), k])
+                        for m in AutomatB.getListaTran():
+                            for n in AutomatB.getAlfabeto():
+                                if i[1] == m.getOrigen() and m.getOperacion() == n and n ==k:
+                                    # print(i[0] + i[1], '===>',j.getDestino()+m.getDestino(), k)
+                                    listaSupersaya.append([i[0] + i[1],j.getDestino()+m.getDestino(), k])
 
-        # transicion = []
-        # for i in AutomatA.getListaTran():
-        #     transicion.append(i.getOrigen())
-        # #print(transicion)
-        #
-        # #print(AutomatA.getAlfabeto())
+        print(listaSupersaya)
+
+        archivo = {"uno" :{  "Nodos": listaNodos, "Trans" : listaSupersaya, "Inicial" : estadoInicial, "Aceptacion" : estadoFinal, "Alfabeto" : listalfa }}
+        with open('Union.json', 'w') as file:
+            json.dump(archivo, file, indent=4)
+
+        automataUno = Automata()
+        automataUno.cargarRedInicialUNO("../View/Union.json")
+        return automataUno
+
+

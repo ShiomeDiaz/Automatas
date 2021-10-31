@@ -12,6 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from View import VentanaAutomata
 from Controller.AutoDos import Automata
 from Controller.Control import Control
+
 from View.VentanaAutomata import VentanaGrafico, dibujarAutomata
 
 
@@ -106,6 +107,7 @@ class Ui_MainWindow(object):
         self.grafica(C.Union())
     def onPushButtonCLicked4(self):
         self.grafica(self.automatados)
+
 
 
     def onPushButtonCLicked5(self):

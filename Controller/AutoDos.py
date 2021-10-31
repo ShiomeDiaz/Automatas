@@ -1,3 +1,4 @@
+import copy
 from collections import deque
 
 from Model.Transicion import Transicion
@@ -21,6 +22,8 @@ class Automata:
 
     def getListaTran(self):
         return self.listaTran
+    def setListaTran(self, listaTran):
+        self.listaTran = listaTran
 
     def getEstadoInicial(self):
         return self.estadoInicial

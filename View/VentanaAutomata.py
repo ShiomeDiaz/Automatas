@@ -166,7 +166,7 @@ class VentanaGrafico:
         imagenAutomata = pygame.transform.smoothscale(imagenAutomata, (900, 470))
         ventana.blit(imagenAutomata, (posX, posY))
 
-<<<<<<< HEAD
+
     def botones(self):
         botones = []
         y = 20
@@ -248,7 +248,7 @@ if __name__ == '__main__':
         v.iniciarVentana()
     else:
         v.EAlfabeto()
-=======
+
     # def botones(self):
     #     botones = []
     #     y = 20
@@ -338,4 +338,4 @@ if __name__ == '__main__':
 #         v.iniciarVentana()
 #     else:
 #         v.EAlfabeto()
->>>>>>> 176fa45df2c3b737904979460776b03441bc2cbe
+

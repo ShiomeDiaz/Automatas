@@ -1,0 +1,42 @@
+{
+    "uno": {
+        "Nodos": [
+            "AC",
+            "AD",
+            "BC",
+            "BD"
+        ],
+        "Trans": [
+            [
+                "AC",
+                "BC",
+                1
+            ],
+            [
+                "AC",
+                "AD",
+                0
+            ],
+            [
+                "AD",
+                "AD",
+                0
+            ],
+            [
+                "BC",
+                "BC",
+                1
+            ]
+        ],
+        "Inicial": [
+            "AC"
+        ],
+        "Aceptacion": [
+            "BD"
+        ],
+        "Alfabeto": [
+            0,
+            1
+        ]
+    }
+}
