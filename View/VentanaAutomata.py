@@ -48,76 +48,70 @@ def dibujarAutomata(alfabeto, estados, inicio, trans, final):
 
 class VentanaGrafico:
     def __init__(self, alf, inicial, aceptacion, estados, trans):
-        self.cursor = Cursor()
+        # self.cursor = Cursor()
         self.G = nx.Graph()
         self.inicial = inicial
         self.aceptacion = aceptacion
-        self.imagen1 = pygame.image.load("boton1.png")
+        # self.imagen1 = pygame.image.load("boton1.png")
         self.alf = alf
         self.estados = estados
         self.trans = trans
-        self.recorridoBctk = []
+        # self.recorridoBctk = []
 
     def iniciarVentana(self):
         pygame.init()
-        ventana = pygame.display.set_mode((1300, 650))
+        ventana = pygame.display.set_mode((1000, 650))
         pygame.display.set_caption("Automata")
         colorFondo = (250, 250, 250)
-        botones = self.botones()
         while True:
             ventana.fill(colorFondo)
             for evento in pygame.event.get():
-                if evento.type == pygame.MOUSEBUTTONDOWN:
-                    if self.cursor.colliderect(botones[0].rect):
-                        self.recorerPalabra(ventana)
 
                 if evento.type == QUIT:
                     pygame.quit()
                     sys.exit()
 
-            for b in botones:
-                b.update(ventana, self.cursor)
-            self.cursor.update()
+            # self.cursor.update()
             self.textoInformacion(ventana)
             self.graficarAutomata(ventana)
             pygame.display.update()
 
-    def recorerPalabra(self, ventana):
-        g = gv.Digraph(format='png')
-        g.graph_attr['rankdir'] = 'LR'
-        g.node('ini', shape="point")
+    # def recorerPalabra(self, ventana):
+    #     g = gv.Digraph(format='png')
+    #     g.graph_attr['rankdir'] = 'LR'
+    #     g.node('ini', shape="point")
 
-        for e in self.estados:
-            if e in self.aceptacion:
-                g.node(e, shape="doublecircle")
-            else:
-                g.node(e)
-            if e in self.inicial:
-                g.edge('ini', e)
-        for t in trans:
-            g.edge(t[0], t[1], label=str(t[2]))
-
-        x = self.inicial.copy()
-        self.bckt(x, [["0"]])
-        posicion = self.recorridoBctk
-        if posicion != None and posicion != []:
-            for p in posicion:
-                self.textoRecorrido(ventana)
-                g.node(p, style='filled', color='red')
-                g.render(view=False)
-                self.graficarAutomata(ventana)
-                pygame.display.update()
-                pygame.time.wait(1200)
-                g.node(p, style="", color="black")
-                g.render(view=False)
-                self.graficarAutomata(ventana)
-                pygame.display.update()
-                pygame.time.wait(500)
-
-        else:
-            self.PNoAceptada()
-
-        self.recorridoBctk = []
+        # for e in self.estados:
+        #     if e in self.aceptacion:
+        #         g.node(e, shape="doublecircle")
+        #     else:
+        #         g.node(e)
+        #     if e in self.inicial:
+        #         g.edge('ini', e)
+        # for t in trans:
+        #     g.edge(t[0], t[1], label=str(t[2]))
+        #
+        # x = self.inicial.copy()
+        # self.bckt(x, [["0"]])
+        # posicion = self.recorridoBctk
+        # if posicion != None and posicion != []:
+        #     for p in posicion:
+        #         self.textoRecorrido(ventana)
+        #         g.node(p, style='filled', color='red')
+        #         g.render(view=False)
+        #         self.graficarAutomata(ventana)
+        #         pygame.display.update()
+        #         pygame.time.wait(1200)
+        #         g.node(p, style="", color="black")
+        #         g.render(view=False)
+        #         self.graficarAutomata(ventana)
+        #         pygame.display.update()
+        #         pygame.time.wait(500)
+        #
+        # else:
+        #     self.PNoAceptada()
+        #
+        # self.recorridoBctk = []
 
     # def bckt(self, candidato, solucion):
     #     print("prueba 165 " + str(len(candidato)))
@@ -172,92 +166,92 @@ class VentanaGrafico:
         imagenAutomata = pygame.transform.smoothscale(imagenAutomata, (900, 470))
         ventana.blit(imagenAutomata, (posX, posY))
 
-    def botones(self):
-        botones = []
-        y = 20
-        boton1 = Boton(self.imagen1, y)
-        botones.append(boton1)
-        return botones
+    # def botones(self):
+    #     botones = []
+    #     y = 20
+    #     boton1 = Boton(self.imagen1, y)
+    #     botones.append(boton1)
+    #     return botones
 
-    def EAlfabeto(self):
-        app = QApplication(sys.argv)
-        _ventana = VentanaEAlfabeto()
-        _ventana.show()
-        app.exec_()
+    # def EAlfabeto(self):
+    #     app = QApplication(sys.argv)
+    #     _ventana = VentanaEAlfabeto()
+    #     _ventana.show()
+    #     app.exec_()
 
-    def PNoAceptada(self):
-        app = QApplication(sys.argv)
-        _ventana.show()
-        app.exec_()
-
-
-class VentanaEAlfabeto(QMainWindow):
-    def __init__(self):
-        QMainWindow.__init__(self)
-        uic.loadUi("VentanaEAlfabeto.ui", self)
-        self.bAceptar.clicked.connect(self.Cancelar)
-
-    def Cancelar(self, QEvent):
-        self.close()
+    # def PNoAceptada(self):
+    #     app = QApplication(sys.argv)
+    #     _ventana.show()
+    #     app.exec_()
 
 
-class Boton(pygame.sprite.Sprite):
-    def __init__(self, imagen, y, x=1000):
-        self.y = y
-        self.imagenBoton = imagen
-        self.rect = self.imagenBoton.get_rect()
-        self.rect.left, self.rect.top = (x, y)
-
-    def update(self, ventana, cursor):
-        ventana.blit(self.imagenBoton, self.rect)
-
-
-class Cursor(pygame.Rect):
-    def __init__(self):
-        pygame.Rect.__init__(self, 0, 0, 1, 1)
-
-    def update(self):
-        self.left, self.top = pygame.mouse.get_pos()
+# class VentanaEAlfabeto(QMainWindow):
+#     def __init__(self):
+#         QMainWindow.__init__(self)
+#         uic.loadUi("VentanaEAlfabeto.ui", self)
+#         self.bAceptar.clicked.connect(self.Cancelar)
+#
+#     def Cancelar(self, QEvent):
+#         self.close()
 
 
-if __name__ == '__main__':
-    # estados = ["A", "B", "C", "E", "F"]
-    # trans = [["A", "B", 1], ["A", "A", 0], ["A", "E", 0], ["E", "D", 1], ["F", "F", 1], ["D", "C", 1],["B", "A", 0],
-    #          ["E", "C", 0], ["F", "D", 0], ["B", "B", 1]]
-    # inicial = ["A"]
-    # alf = [0, 1]
-    # aceptacion = ["C"]
+# class Boton(pygame.sprite.Sprite):
+#     def __init__(self, imagen, y, x=1000):
+#         self.y = y
+#         self.imagenBoton = imagen
+#         self.rect = self.imagenBoton.get_rect()
+#         self.rect.left, self.rect.top = (x, y)
+#
+#     def update(self, ventana, cursor):
+#         ventana.blit(self.imagenBoton, self.rect)
 
-    automataUno = Automata()
-    automataUno.cargarRedInicialUNO("../Data/datos.json")
 
-    estados =[]
-    for nodo in range(len(automataUno.listaTran)):
-        estados.insert(nodo,automataUno.listaNodoEstado[nodo].estado)
-    trans = []
-    for tran in range(len(automataUno.listaTran)):
-        o = automataUno.listaTran[tran].origen
-        d = automataUno.listaTran[tran].destino
-        op = automataUno.listaTran[tran].operacion
-        trans.insert(tran, [o, d, op])
+# class Cursor(pygame.Rect):
+#     def __init__(self):
+#         pygame.Rect.__init__(self, 0, 0, 1, 1)
+#
+#     def update(self):
+#         self.left, self.top = pygame.mouse.get_pos()
 
-    # aceptacion = A.getEstadoInicial
 
-    # aceptacion = A.getEstadosAceptacion
-    # automataUno = Automata()
-
-    # automataUno.cargarRedInicialUNO("../Data/datos.json")
-    # estados = automataUno.getListaNodoEstado()
-    # trans = automataUno.getListaTran()
-    inicial = automataUno.getEstadoInicial()
-    aceptacion = automataUno.getEstadosAceptacion()
-    #
-    alf = [0, 1]
-    #
-
-    x = dibujarAutomata(alf, estados, inicial, trans, aceptacion)
-    v = VentanaGrafico(alf, inicial, aceptacion, estados, trans)
-    if x == 2:
-        v.iniciarVentana()
-    else:
-        v.EAlfabeto()
+# if __name__ == '__main__':
+#     # estados = ["A", "B", "C", "E", "F"]
+#     # trans = [["A", "B", 1], ["A", "A", 0], ["A", "E", 0], ["E", "D", 1], ["F", "F", 1], ["D", "C", 1],["B", "A", 0],
+#     #          ["E", "C", 0], ["F", "D", 0], ["B", "B", 1]]
+#     # inicial = ["A"]
+#     # alf = [0, 1]
+#     # aceptacion = ["C"]
+#
+#     automataUno = Automata()
+#     automataUno.cargarRedInicialUNO("../Data/datos.json")
+#
+#     estados =[]
+#     for nodo in range(len(automataUno.listaTran)):
+#         estados.insert(nodo,automataUno.listaNodoEstado[nodo].estado)
+#     trans = []
+#     for tran in range(len(automataUno.listaTran)):
+#         o = automataUno.listaTran[tran].origen
+#         d = automataUno.listaTran[tran].destino
+#         op = automataUno.listaTran[tran].operacion
+#         trans.insert(tran, [o, d, op])
+#
+#     # aceptacion = A.getEstadoInicial
+#
+#     # aceptacion = A.getEstadosAceptacion
+#     # automataUno = Automata()
+#
+#     # automataUno.cargarRedInicialUNO("../Data/datos.json")
+#     # estados = automataUno.getListaNodoEstado()
+#     # trans = automataUno.getListaTran()
+#     inicial = automataUno.getEstadoInicial()
+#     aceptacion = automataUno.getEstadosAceptacion()
+#     #
+#     alf = [0, 1]
+#     #
+#
+#     x = dibujarAutomata(alf, estados, inicial, trans, aceptacion)
+#     v = VentanaGrafico(alf, inicial, aceptacion, estados, trans)
+#     if x == 2:
+#         v.iniciarVentana()
+#     else:
+#         v.EAlfabeto()
