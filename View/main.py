@@ -11,9 +11,10 @@ if __name__ == "__main__":
 
     automataUno = Automata()
     automataUno.cargarRedInicialUNO("../Data/datos.json")
+    automataUno.completarAutomata()
     automataDos = Automata()
     automataDos.cargarRedInicialDOS("../Data/datos.json")
-
+    automataDos.completarAutomata()
     #print(automataDos.listaNodoEstado[0].estado)
 
     listAutomatas = [automataUno, automataDos]

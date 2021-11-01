@@ -68,7 +68,7 @@ class VentanaGrafico:
             for evento in pygame.event.get():
 
                 if evento.type == QUIT:
-                    #ygame.quit()
+                    pygame.quit()
                     sys.exit()
 
             # self.cursor.update()
@@ -167,87 +167,87 @@ class VentanaGrafico:
         ventana.blit(imagenAutomata, (posX, posY))
 
 
-    def botones(self):
-        botones = []
-        y = 20
-        boton1 = Boton(self.imagen1, y)
-        botones.append(boton1)
-        return botones
+    # def botones(self):
+    #     botones = []
+    #     y = 20
+    #     boton1 = Boton(self.imagen1, y)
+    #     botones.append(boton1)
+    #     return botones
 
-    def EAlfabeto(self):
-        app = QApplication(sys.argv)
-        _ventana = VentanaEAlfabeto()
-        _ventana.show()
-        app.exec_()
-
-    def PNoAceptada(self):
-        app = QApplication(sys.argv)
-        _ventana.show()
-        app.exec_()
-
-
-class VentanaEAlfabeto(QMainWindow):
-    def __init__(self):
-        QMainWindow.__init__(self)
-        uic.loadUi("VentanaEAlfabeto.ui", self)
-        self.bAceptar.clicked.connect(self.Cancelar)
-
-    def Cancelar(self, QEvent):
-        self.close()
-
-
-class Boton(pygame.sprite.Sprite):
-    def __init__(self, imagen, y, x=1000):
-        self.y = y
-        self.imagenBoton = imagen
-        self.rect = self.imagenBoton.get_rect()
-        self.rect.left, self.rect.top = (x, y)
-
-    def update(self, ventana, cursor):
-        ventana.blit(self.imagenBoton, self.rect)
-
-
-class Cursor(pygame.Rect):
-    def __init__(self):
-        pygame.Rect.__init__(self, 0, 0, 1, 1)
-
-    def update(self):
-        self.left, self.top = pygame.mouse.get_pos()
-
-
-if __name__ == '__main__':
-    automataUno = Automata()
-    automataUno.cargarRedInicialUNO("../Data/datos.json")
-    estados =[]
-    for nodo in range(len(automataUno.listaTran)):
-        estados.insert(nodo,automataUno.listaNodoEstado[nodo].estado)
-    trans = []
-    for tran in range(len(automataUno.listaTran)):
-        o = automataUno.listaTran[tran].origen
-        d = automataUno.listaTran[tran].destino
-        op = automataUno.listaTran[tran].operacion
-        trans.insert(tran, [o, d, op])
-
-    # aceptacion = A.getEstadoInicial
-
-    # aceptacion = A.getEstadosAceptacion
-    # automataUno = Automata()
-
-    # automataUno.cargarRedInicialUNO("../Data/datos.json")
-    # estados = automataUno.getListaNodoEstado()
-    # trans = automataUno.getListaTran()
-    inicial = automataUno.getEstadoInicial()
-    aceptacion = automataUno.getEstadosAceptacion()
+    # def EAlfabeto(self):
+    #     app = QApplication(sys.argv)
+    #     _ventana = VentanaEAlfabeto()
+    #     _ventana.show()
+    #     app.exec_()
     #
-    alf = [0, 1]
-    #
+    # def PNoAceptada(self):
+    #     app = QApplication(sys.argv)
+    #     _ventana.show()
+    #     app.exec_()
 
-    x = dibujarAutomata(alf, estados, inicial, trans, aceptacion)
-    v = VentanaGrafico(alf, inicial, aceptacion, estados, trans)
-    if x == 2:
-        v.iniciarVentana()
-    else:
-        v.EAlfabeto()
+
+# class VentanaEAlfabeto(QMainWindow):
+#     def __init__(self):
+#         QMainWindow.__init__(self)
+#         uic.loadUi("VentanaEAlfabeto.ui", self)
+#         self.bAceptar.clicked.connect(self.Cancelar)
+#
+#     def Cancelar(self, QEvent):
+#         self.close()
+
+
+# class Boton(pygame.sprite.Sprite):
+#     def __init__(self, imagen, y, x=1000):
+#         self.y = y
+#         self.imagenBoton = imagen
+#         self.rect = self.imagenBoton.get_rect()
+#         self.rect.left, self.rect.top = (x, y)
+#
+#     def update(self, ventana, cursor):
+#         ventana.blit(self.imagenBoton, self.rect)
+
+
+# class Cursor(pygame.Rect):
+#     def __init__(self):
+#         pygame.Rect.__init__(self, 0, 0, 1, 1)
+#
+#     def update(self):
+#         self.left, self.top = pygame.mouse.get_pos()
+
+
+# if __name__ == '__main__':
+#     automataUno = Automata()
+#     automataUno.cargarRedInicialUNO("../Data/datos.json")
+#     estados =[]
+#     for nodo in range(len(automataUno.listaTran)):
+#         estados.insert(nodo,automataUno.listaNodoEstado[nodo].estado)
+#     trans = []
+#     for tran in range(len(automataUno.listaTran)):
+#         o = automataUno.listaTran[tran].origen
+#         d = automataUno.listaTran[tran].destino
+#         op = automataUno.listaTran[tran].operacion
+#         trans.insert(tran, [o, d, op])
+#
+#     # aceptacion = A.getEstadoInicial
+#
+#     # aceptacion = A.getEstadosAceptacion
+#     # automataUno = Automata()
+#
+#     # automataUno.cargarRedInicialUNO("../Data/datos.json")
+#     # estados = automataUno.getListaNodoEstado()
+#     # trans = automataUno.getListaTran()
+#     inicial = automataUno.getEstadoInicial()
+#     aceptacion = automataUno.getEstadosAceptacion()
+#     #
+#     alf = [0, 1]
+#     #
+#
+#     x = dibujarAutomata(alf, estados, inicial, trans, aceptacion)
+#     v = VentanaGrafico(alf, inicial, aceptacion, estados, trans)
+#     if x == 2:
+#         v.iniciarVentana()
+#     else:
+#         v.EAlfabeto()
 
     # def botones(self):
     #     botones = []

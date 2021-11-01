@@ -114,7 +114,12 @@ class Ui_MainWindow(object):
     def onPushButtonCLicked(self):# Mostrar Automata uno
         self.grafica(self.automatauno)
 
+<<<<<<< HEAD
     def onPushButtonCLicked2(self):# Mostrar Complemento Automata uno
+=======
+
+    def onPushButtonCLicked2(self):
+>>>>>>> 8b4f02656c10f22caa68e5e3c1bef973de524faa
         C = Control(self.listautomata)
         self.grafica(C.complemento(0))
 
@@ -142,7 +147,7 @@ class Ui_MainWindow(object):
     def grafica(self, automata):
 
         auto = automata
-        alf = [0, 1]
+        alf = auto.getAlfabeto()
         estados = []
         for i in auto.getListaNodoEstado():
             estados.append(i.getEstado())

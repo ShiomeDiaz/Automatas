@@ -4,10 +4,19 @@ digraph {
 	AC
 	ini -> AC
 	AD
+	Asum
 	BC
 	BD [shape=doublecircle]
+	Bsum
+	sumC
+	sumD
+	sumsum
 	AC -> BC [label=1]
 	AC -> AD [label=0]
+	AD -> Bsum [label=1]
 	AD -> AD [label=0]
 	BC -> BC [label=1]
+	BC -> sumD [label=0]
+	BD -> Bsum [label=1]
+	BD -> sumD [label=0]
 }

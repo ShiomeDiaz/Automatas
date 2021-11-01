@@ -3,8 +3,13 @@
         "Nodos": [
             "AC",
             "AD",
+            "Asum",
             "BC",
-            "BD"
+            "BD",
+            "Bsum",
+            "sumC",
+            "sumD",
+            "sumsum"
         ],
         "Trans": [
             [
@@ -19,6 +24,11 @@
             ],
             [
                 "AD",
+                "Bsum",
+                1
+            ],
+            [
+                "AD",
                 "AD",
                 0
             ],
@@ -26,6 +36,21 @@
                 "BC",
                 "BC",
                 1
+            ],
+            [
+                "BC",
+                "sumD",
+                0
+            ],
+            [
+                "BD",
+                "Bsum",
+                1
+            ],
+            [
+                "BD",
+                "sumD",
+                0
             ]
         ],
         "Inicial": [
