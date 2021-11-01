@@ -82,6 +82,20 @@ class Ui_MainWindow(object):
 "\n"
 "border-radius:20px;")
         self.pushButton_6.setObjectName("pushButton_6")
+        self.pushButton_7 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_7.setGeometry(QtCore.QRect(160, 340, 75, 23))
+        self.pushButton_7.setStyleSheet(
+            "background-color: qlineargradient(spread:reflect, x1:0.5, y1:0, x2:1, y2:0, stop:1 rgba(62, 62, 62, 255));\n"
+            "\n"
+            "border-radius:20px;")
+        self.pushButton_7.setObjectName("pushButton_7")
+        self.pushButton_8 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_8.setGeometry(QtCore.QRect(160, 370, 75, 23))
+        self.pushButton_8.setStyleSheet(
+            "background-color: qlineargradient(spread:reflect, x1:0.5, y1:0, x2:1, y2:0, stop:1 rgba(62, 62, 62, 255));\n"
+            "\n"
+            "border-radius:20px;")
+        self.pushButton_8.setObjectName("pushButton_8")
         self.verticalLayout.addWidget(self.frame)
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -94,27 +108,36 @@ class Ui_MainWindow(object):
         self.pushButton_4.clicked.connect(self.onPushButtonCLicked4)
         self.pushButton_5.clicked.connect(self.onPushButtonCLicked5)
         self.pushButton_6.clicked.connect(self.onPushButtonCLicked6)
-    def onPushButtonCLicked(self):
+        self.pushButton_7.clicked.connect(self.onPushButtonCLicked7)
+        self.pushButton_8.clicked.connect(self.onPushButtonCLicked8)
+
+    def onPushButtonCLicked(self):# Mostrar Automata uno
         self.grafica(self.automatauno)
 
-    def onPushButtonCLicked2(self):
+    def onPushButtonCLicked2(self):# Mostrar Complemento Automata uno
         C = Control(self.listautomata)
         self.grafica(C.complemento(0))
 
 
-    def onPushButtonCLicked3(self):
-        C = Control(self.listautomata)
-        self.grafica(C.Union())
-    def onPushButtonCLicked4(self):
+    def onPushButtonCLicked3(self):# Mostrar reverso Automata uno
+        print("Falta")
+
+    def onPushButtonCLicked4(self):# Mostrar Automata dos
         self.grafica(self.automatados)
 
-
-
-    def onPushButtonCLicked5(self):
+    def onPushButtonCLicked5(self):# Mostrar Complemento Automata dos
         C = Control(self.listautomata)
         self.grafica(C.complemento(1))
-    def onPushButtonCLicked6(self):
-        print(self.automatados.amplitud('C'))
+
+    def onPushButtonCLicked6(self):# Mostrar Reverso Automata dos
+        print("Falta")
+
+    def onPushButtonCLicked7(self):# Mostrar la Union
+        C = Control(self.listautomata)
+        self.grafica(C.Union())
+    def onPushButtonCLicked8(self):# Mostrar la Disyuntiva
+        C = Control(self.listautomata)
+        self.grafica(C.Disyuncion())
 
     def grafica(self, automata):
 
@@ -147,3 +170,5 @@ class Ui_MainWindow(object):
         self.pushButton_4.setText(_translate("MainWindow", "Automata dos"))
         self.pushButton_5.setText(_translate("MainWindow", "Complemento dos"))
         self.pushButton_6.setText(_translate("MainWindow", "Reverso dos"))
+        self.pushButton_7.setText(_translate("MainWindow", "Union"))
+        self.pushButton_8.setText(_translate("MainWindow", "Disyuntiva"))
