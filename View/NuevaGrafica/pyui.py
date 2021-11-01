@@ -114,15 +114,10 @@ class Ui_MainWindow(object):
     def onPushButtonCLicked(self):# Mostrar Automata uno
         self.grafica(self.automatauno)
 
-<<<<<<< HEAD
-    def onPushButtonCLicked2(self):# Mostrar Complemento Automata uno
-=======
 
-    def onPushButtonCLicked2(self):
->>>>>>> 8b4f02656c10f22caa68e5e3c1bef973de524faa
+    def onPushButtonCLicked2(self):# Mostrar Complemento Automata uno
         C = Control(self.listautomata)
         self.grafica(C.complemento(0))
-
 
     def onPushButtonCLicked3(self):# Mostrar reverso Automata uno
         print("Falta")
