@@ -1,20 +1,21 @@
 {
   "uno": {
-    "Nodos": ["A", "B"],
-    "Trans" : [["A", "B", 1], ["A", "A", 0], ["B", "B", 1]],
+    "Nodos":  ["A", "B","C"],
+    "Trans" : [["A", "B", 1], ["A", "C", 0], ["B", "B", 1], ["B", "A", 0], ["C", "B", 1], ["C", "C", 1]],
     "Inicial" : ["A"],
     "Aceptacion" : ["B"],
     "Alfabeto" : [0,1]
   },
     "dos": {
-      "Nodos": [
-        "C",
-        "D"
+      "Nodos":  [
+        "D",
+        "E",
+        "F"
       ],
       "Trans": [
-        ["C", "D", 0], ["C", "C", 1], ["D", "D", 0]],
-    "Inicial" : ["C"],
-    "Aceptacion" : ["D"],
+        ["D", "D", 1], ["D", "E", 0], ["E", "E", 1], ["E", "F", 0], ["F", "F", 1], ["F", "E", 1]],
+    "Inicial" : ["D"],
+    "Aceptacion" : ["F"],
     "Alfabeto" : [0,1]
     }
 }

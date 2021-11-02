@@ -40,7 +40,6 @@ class Control:
         estadoFinal = []
         AutomatA = copy.deepcopy(self.automatas[0])
         AutomatB = copy.deepcopy(self.automatas[1])
-        AutomatC = copy.deepcopy(self.automatas[0])
 
         #  alimentamos lista nodos
         for i in AutomatA.getListaNodoEstado():
@@ -76,16 +75,12 @@ class Control:
         listaSupersaya = []
         listaNodosAux = listaNodos
         for i in listaNodosAux:
-            # print('Transicion', ' ', i[0], i[1])
             for j in AutomatA.getListaTran():
                 for k in AutomatA.getAlfabeto():
                     if i[0] == j.getOrigen() and j.getOperacion() == k:
-                        # me imprime que encontro la transiciond e A
-                        #listaSupersaya.append([j.getOrigen(), j.getDestino(), k])
                         for m in AutomatB.getListaTran():
                             for n in AutomatB.getAlfabeto():
                                 if i[1] == m.getOrigen() and m.getOperacion() == n and n ==k:
-                                    # print(i[0] + i[1], '===>',j.getDestino()+m.getDestino(), k)
                                     listaSupersaya.append([i[0] + i[1],j.getDestino()+m.getDestino(), k])
 
         print(listaSupersaya)
@@ -95,7 +90,7 @@ class Control:
             json.dump(archivo, file, indent=4)
 
         automataUno = Automata()
-        automataUno.cargarRedInicialUNO("../Data/Union.json")
+        automataUno.cargarRedInicialUNO("../View/Union.json")
         return automataUno
 
     def Disyuncion(self):
@@ -104,7 +99,6 @@ class Control:
         estadoFinal = []
         AutomatA = copy.deepcopy(self.automatas[0])
         AutomatB = copy.deepcopy(self.automatas[1])
-        AutomatC = copy.deepcopy(self.automatas[0])
 
         #  alimentamos lista nodos
         for i in AutomatA.getListaNodoEstado():
@@ -113,7 +107,6 @@ class Control:
         print(listaNodos, 'estados')
 
         # alimentar estado inicial
-
         for i in AutomatA.getEstadoInicial():
             for j in AutomatB.getEstadoInicial():
                 estadoInicial.append(i + j)
@@ -135,16 +128,12 @@ class Control:
         listaSupersaya = []
         listaNodosAux = listaNodos
         for i in listaNodosAux:
-            # print('Transicion', ' ', i[0], i[1])
             for j in AutomatA.getListaTran():
                 for k in AutomatA.getAlfabeto():
                     if i[0] == j.getOrigen() and j.getOperacion() == k:
-                        # me imprime que encontro la transiciond e A
-                        # listaSupersaya.append([j.getOrigen(), j.getDestino(), k])
                         for m in AutomatB.getListaTran():
                             for n in AutomatB.getAlfabeto():
                                 if i[1] == m.getOrigen() and m.getOperacion() == n and n == k:
-                                    # print(i[0] + i[1], '===>',j.getDestino()+m.getDestino(), k)
                                     listaSupersaya.append([i[0] + i[1], j.getDestino() + m.getDestino(), k])
 
         print(listaSupersaya)
@@ -156,7 +145,7 @@ class Control:
             json.dump(archivo, file, indent=4)
 
         automataUno = Automata()
-        automataUno.cargarRedInicialUNO("../Data/Disyuncion.json")
+        automataUno.cargarRedInicialUNO("../View/Disyuncion.json")
         return automataUno
 
 

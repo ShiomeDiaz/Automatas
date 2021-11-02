@@ -137,33 +137,12 @@ class Automata:
 
 
     def verificarTransicion(self, origen, destino, operacion):
-        #print(origen, destino, operacion,'--> el careverga')
-        #print(self.listaNodoEstado)
-        #print(self.listaTran, 'Mp')
         for Transicion in self.listaTran:
-            #print(Transicion.getOrigen())
-            #print(Transicion.getOrigen(), '=',origen, '---', Transicion.getDestino(),'=', destino, Transicion.getOperacion())
-            #print(Transicion.getOperacion())
+
             if Transicion.getOrigen() == origen and Transicion.getDestino() == destino:
-                #print('gonorrea')
+
                 return Transicion
         return None
-    '''
-    def imprimirNodoEstado(self):
-        for nodoEstado in self.listaNodoEstado:
-            print(nodoEstado.getEstado())
-
-    '''
-    '''
-    def cargarRedInicial(self, ruta):
-        with open(ruta) as contenido:
-            redAcme = json.load(contenido)
-        for nodos in redAcme["Cuevas"]:
-            self.ingresarVertice(vertice)
-        for arista in redAcme["Caminos"]:
-            self.ingresarArista(arista[0], arista[1], arista[2])
-        self.noDirigido(self.listaAristas)
-    '''
 
     def amplitud(self, estado):
         visitadosA = []
@@ -180,12 +159,6 @@ class Automata:
                     cola.append(nodoEstado)
                     visitadosA.append(Transicion)
         return visitadosA
-
-    '''Creacion de metodos para operaciones,
-    Para un solo grafo ---> Complemento, reverso y completar automata en caso de que este incompleto
-    Para la pareja de grafos -->
-    [A, B]U[C, D] ==> [AC, AD, BC, BD]
-    '''
 
     def cargarRedInicialUNO(self, ruta): # --> Metodo que se alimenta del json
         with open(ruta) as contenido:
