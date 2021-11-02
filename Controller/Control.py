@@ -95,7 +95,7 @@ class Control:
             json.dump(archivo, file, indent=4)
 
         automataUno = Automata()
-        automataUno.cargarRedInicialUNO("../View/Union.json")
+        automataUno.cargarRedInicialUNO("../Data/Union.json")
         return automataUno
 
     def Disyuncion(self):
@@ -156,7 +156,7 @@ class Control:
             json.dump(archivo, file, indent=4)
 
         automataUno = Automata()
-        automataUno.cargarRedInicialUNO("../View/Disyuncion.json")
+        automataUno.cargarRedInicialUNO("../Data/Disyuncion.json")
         return automataUno
 
 
